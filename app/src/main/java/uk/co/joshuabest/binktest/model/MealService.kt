@@ -17,4 +17,8 @@ class MealService {
         return mealApi.getMealCategories()
     }
 
+    fun getRecipesForCategory(category: String) : Single<Meals> {
+        return mealApi.getRecipesForCategory(category)
+    }
+
 }
