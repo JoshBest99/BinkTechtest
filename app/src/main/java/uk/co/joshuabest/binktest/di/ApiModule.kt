@@ -11,7 +11,7 @@ import uk.co.joshuabest.binktest.model.MealService
 @Module
 class ApiModule {
 
-    private val BASE_URL = "https://raw.githubusercontent.com"
+    private val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
     @Provides
     fun provideCountriesApi() : MealApi {
