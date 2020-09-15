@@ -7,11 +7,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import uk.co.joshuabest.binktest.di.DaggerApiComponent
-import uk.co.joshuabest.binktest.model.Categories
+import uk.co.joshuabest.binktest.model.MealDataParent
 import uk.co.joshuabest.binktest.model.MealService
 import javax.inject.Inject
 
-class CategoriesViewModel : ViewModel() {
+class MealViewModel : ViewModel() {
 
     @Inject
     lateinit var mealService: MealService
@@ -22,30 +22,30 @@ class CategoriesViewModel : ViewModel() {
 
     private val disposable = CompositeDisposable()
 
-    val categories = MutableLiveData<Categories>()
-    val categoriesLoadError = MutableLiveData<Boolean>()
-    val isLoadingCategories = MutableLiveData<Boolean>()
+    val mealData = MutableLiveData<MealDataParent>()
+    val mealsLoadError = MutableLiveData<Boolean>()
+    val isLoadingMealsData = MutableLiveData<Boolean>()
 
-    fun refresh() {
-        fetchCategories()
+    fun refresh(mealId: String) {
+        fetchMealDetails(mealId)
     }
 
-    private fun fetchCategories() {
-        isLoadingCategories.value = true
+    private fun fetchMealDetails(mealId: String) {
+        isLoadingMealsData.value = true
         disposable.add(
-            mealService.getMealCategories()
+            mealService.getMealForId(mealId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<Categories>() {
-                    override fun onSuccess(value: Categories?) {
-                        categories.value = value
-                        categoriesLoadError.value = false
-                        isLoadingCategories.value = false
+                .subscribeWith(object : DisposableSingleObserver<MealDataParent>() {
+                    override fun onSuccess(value: MealDataParent?) {
+                        mealData.value = value
+                        mealsLoadError.value = false
+                        isLoadingMealsData.value = false
                     }
 
                     override fun onError(e: Throwable?) {
-                        categoriesLoadError.value = true
-                        isLoadingCategories.value = false
+                        mealsLoadError.value = true
+                        isLoadingMealsData.value = false
                     }
                 })
         )
@@ -57,5 +57,4 @@ class CategoriesViewModel : ViewModel() {
         super.onCleared()
         disposable.clear()
     }
-
 }

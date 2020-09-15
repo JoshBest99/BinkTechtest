@@ -1,4 +1,4 @@
-package uk.co.joshuabest.binktest.view
+package uk.co.joshuabest.binktest.view.categories
 
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,10 @@ import uk.co.joshuabest.binktest.viewmodel.CategoriesViewModel
 class CategoriesView : AppCompatActivity() {
 
     lateinit var categoriesViewModel: CategoriesViewModel
-    private val categoriesListAdapter = CategoriesListAdapter(arrayListOf())
+    private val categoriesListAdapter =
+        CategoriesListAdapter(
+            arrayListOf()
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

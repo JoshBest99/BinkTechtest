@@ -32,3 +32,25 @@ data class Meal(
     @SerializedName("idMeal")
     val mealId: String?
 ) : Serializable
+
+data class MealDataParent(
+    @SerializedName("meals")
+    val meals: ArrayList<MealData>?
+)
+
+data class MealData(
+    @SerializedName("idMeal")
+    val mealId: Int,
+    @SerializedName("strMeal")
+    val mealName: String,
+    @SerializedName("strCategory")
+    val mealCategory: String,
+    @SerializedName("strArea")
+    val mealArea: String,
+    @SerializedName("strInstructions")
+    val mealInstructions: String,
+    @SerializedName("strTags")
+    val mealTags: String,
+    @SerializedName("strYoutube")
+    val mealYoutube: String
+)

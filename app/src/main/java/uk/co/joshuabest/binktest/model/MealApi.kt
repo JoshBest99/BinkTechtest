@@ -13,4 +13,9 @@ interface MealApi {
     fun getRecipesForCategory(
         @Query("c") categoryName : String
     ): Single<Meals>
+
+    @GET("lookup.php")
+    fun getMealForId(
+        @Query("i") mealId : String
+    ): Single<MealDataParent>
 }

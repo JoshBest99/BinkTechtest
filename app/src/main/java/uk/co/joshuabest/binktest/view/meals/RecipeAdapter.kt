@@ -1,4 +1,4 @@
-package uk.co.joshuabest.binktest.view
+package uk.co.joshuabest.binktest.view.meals
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,7 +14,9 @@ class RecipeAdapter(fm: FragmentManager, private val meals: ArrayList<Meal>) : F
 
     override fun getItem(position: Int): Fragment {
         val meal = meals[position]
-        return RecipeFragment.newInstance(meal)
+        return RecipeFragment.newInstance(
+            meal
+        )
     }
 
 

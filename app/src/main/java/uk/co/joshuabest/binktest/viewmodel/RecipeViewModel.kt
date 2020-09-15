@@ -23,14 +23,15 @@ class RecipeViewModel : ViewModel() {
     private val disposable = CompositeDisposable()
 
     val meals = MutableLiveData<Meals>()
+    val mealAmount = MutableLiveData<Int>()
     val mealsLoadError = MutableLiveData<Boolean>()
     val isLoadingMeals = MutableLiveData<Boolean>()
 
     fun refresh(categoryName: String) {
-        fetchCountries(categoryName)
+        fetchMeals(categoryName)
     }
 
-    private fun fetchCountries(categoryName: String) {
+    private fun fetchMeals(categoryName: String) {
         isLoadingMeals.value = true
         disposable.add(
             mealService.getRecipesForCategory(categoryName)
@@ -39,6 +40,7 @@ class RecipeViewModel : ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<Meals>() {
                     override fun onSuccess(value: Meals?) {
                         meals.value = value
+                        mealAmount.value = meals.value?.meals?.size
                         mealsLoadError.value = false
                         isLoadingMeals.value = false
                     }

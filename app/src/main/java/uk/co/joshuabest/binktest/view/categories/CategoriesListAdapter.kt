@@ -1,4 +1,4 @@
-package uk.co.joshuabest.binktest.view
+package uk.co.joshuabest.binktest.view.categories
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.item_category.view.*
 import uk.co.joshuabest.binktest.R
 import uk.co.joshuabest.binktest.model.Category
 import uk.co.joshuabest.binktest.util.loadImage
+import uk.co.joshuabest.binktest.view.meals.RecipeView
 
 
 class CategoriesListAdapter(var categories: ArrayList<Category>) :
@@ -20,9 +21,10 @@ class CategoriesListAdapter(var categories: ArrayList<Category>) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CategoriesViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        CategoriesViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
+        )
 
     override fun getItemCount(): Int = categories.size
 

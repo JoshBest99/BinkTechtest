@@ -3,6 +3,7 @@ package uk.co.joshuabest.binktest.di
 import dagger.Component
 import uk.co.joshuabest.binktest.model.MealService
 import uk.co.joshuabest.binktest.viewmodel.CategoriesViewModel
+import uk.co.joshuabest.binktest.viewmodel.MealViewModel
 import uk.co.joshuabest.binktest.viewmodel.RecipeViewModel
 
 
@@ -14,5 +15,7 @@ interface ApiComponent {
     fun inject(categoriesViewModel: CategoriesViewModel)
 
     fun inject(recipeViewModel: RecipeViewModel)
+
+    fun inject(mealViewModel: MealViewModel)
 
 }
